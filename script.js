@@ -54,7 +54,34 @@ if (!player1 && !player2){
 }
 
 
-//Display Logic
+//Display
+function displayBoardWeb(item){
+    const items = document.querySelector(item);
+    items.addEventListener('click', moveFunction);
+    let isXNext = true;
+    function moveFunction(){
+        if (isXNext){
+            items.textContent = 'X';
+        }
+        else{
+            items.textContent='O'
+        }
+        isXNext = !isXNext;
+    }
+}
+for (let i=1; i<=9; i++){
+    displayBoardWeb(`#item${i}`);
+}
+
+
+
+// const item1 = document.querySelector('#item1');
+// item1.addEventListener('click', moveFunction);
+// function moveFunction(){
+//     item1.textContent = 'X';
+// }
+
+
 
 
 //Create a Grid where when a box is pressed in the grid, either the x or O appears 
@@ -65,34 +92,6 @@ if (!player1 && !player2){
 
 
 
-
-
-
-
-// function displayBoardWeb(line, className){
-//     const container = document.querySelector('#container');
-//     const content = document.createElement('span');
-//     content.classList.add(className);
-//     content.textContent = line;
-//     container.appendChild(content);
-//     return {line, className};
-// }
-// //Want to make a factory function where for each tile, I can call it, giving it a different class name
-// const tile1 = displayBoardWeb(game.board[0][0], 'tile1');
-
-// const gamerow1 = displayBoardWeb(game.board[0][0]);
-// const gamerow12 = displayBoardWeb(game.board[0][1]);
-// const gamerow13 = displayBoardWeb(game.board[0][2]);
-
-
-
-// function addMarks(){
-//     function markfunction(){
-//         game.board[0][0]=='X';
-//     }
-// }
-
-// addMarks();
 
 
 
