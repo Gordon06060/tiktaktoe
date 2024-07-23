@@ -5,7 +5,7 @@ function displayBoard(){
             ['X', 'X', 'O'],
         ]
         for (const row of board){
-            return {board,row};
+            return {board};
         }
     }
 
@@ -59,6 +59,7 @@ function displayBoardWeb(item){
     const items = document.querySelector(item);
     items.addEventListener('click', moveFunction);
     let isXNext = true;
+    
     function moveFunction(){
         if (isXNext){
             items.textContent = 'X';
@@ -73,13 +74,12 @@ for (let i=1; i<=9; i++){
     displayBoardWeb(`#item${i}`);
 }
 
+//This will be the function that handles the logic that changes the game elements as the screen changes
 
 
-// const item1 = document.querySelector('#item1');
-// item1.addEventListener('click', moveFunction);
-// function moveFunction(){
-//     item1.textContent = 'X';
-// }
+
+
+
 
 
 
