@@ -11,22 +11,29 @@ function displayBoardWeb(itemSelector){
             else{
                 item.textContent='O'
             }
+            
             isXNext = !isXNext;
+            const player1 = checkWin('X');
+            const player2 = checkWin('O');
+
+            if (!player1 && !player2){
+                if (checkTie()){
+                    console.log('There is a Tie')
+                }
+            }
         });
     });
-
-}
+};
 displayBoardWeb('div[id^="item"]');
-
 
 
 
 
 function makedisplayBoard(){
         const board = [
-            ['V', 'O', 'X'],
-            ['X', 'X', 'X'],
-            ['X', 'X', 'O'],
+            ['X', 'O', 'O'],
+            ['X', '', 'X'],
+            ['', 'X', 'O'],
         ];
         function updateBoard(row,col,value){
             board[row][col]=value;
@@ -39,18 +46,11 @@ function makedisplayBoard(){
     };
 const displayBoard = makedisplayBoard();
 const gameBoard = displayBoard.getBoard();
-//I can now use displayBoard.updateBoard to change the values of the board
 
-function changeBoard(itemNum){
-    const item = document.querySelector(`#item${itemNum}`);
-    const itemText = item.textContent;
-    function updateBoardTile(){
-        displayBoard.updateBoard()
-    }
-}
+
 
 // function changeBoard(){
-//     const item1 = document.querySelector('#item1');
+//     const item1 = document.querySelector('#item00');
 //     const item1Text = item1.textContent;
 
 //     function updateBoardTile(){
@@ -59,8 +59,8 @@ function changeBoard(itemNum){
 //     return {updateBoardTile};
 // }
 
-const move = changeBoard();
-move.updateBoardTile();
+// const move = changeBoard();
+// move.updateBoardTile();
 
 
 
@@ -98,14 +98,9 @@ function checkWin(player){
     }
 }
 
-const player1 = checkWin('X');
-const player2 = checkWin('O');
 
-if (!player1 && !player2){
-    if (checkTie()){
-        console.log('There is a Tie')
-    }
-}
+
+
 
 
 
