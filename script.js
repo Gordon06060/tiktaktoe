@@ -1,23 +1,24 @@
 //Display
-function displayBoardWeb(item){
-    const items = document.querySelector(item);
-    items.addEventListener('click', moveFunction);
+function displayBoardWeb(itemSelector){
+    const items = document.querySelectorAll(itemSelector);
     let isXNext = true;
-    
-    function moveFunction(){
-        if (isXNext){
-            items.textContent = 'X';
-        }
-        else{
-            items.textContent='O'
-        }
-        isXNext = !isXNext;
-    }
+    items.forEach(function (item){
+        //item takes on each const of items
+        item.addEventListener('click',function moveFunction(){
+            if (isXNext){
+                item.textContent = 'X';
+            }
+            else{
+                item.textContent='O'
+            }
+            isXNext = !isXNext;
+        });
+    });
 
 }
-for (let i=1; i<=9; i++){
-    displayBoardWeb(`#item${i}`);
-}
+displayBoardWeb('div[id^="item"]');
+
+
 
 
 
@@ -40,15 +41,23 @@ const displayBoard = makedisplayBoard();
 const gameBoard = displayBoard.getBoard();
 //I can now use displayBoard.updateBoard to change the values of the board
 
-function changeBoard(){
-    const item1 = document.querySelector('#item1');
-    const item1Text = item1.textContent;
-
+function changeBoard(itemNum){
+    const item = document.querySelector(`#item${itemNum}`);
+    const itemText = item.textContent;
     function updateBoardTile(){
-        displayBoard.updateBoard(0,0,item1Text);
+        displayBoard.updateBoard()
     }
-    return {updateBoardTile};
 }
+
+// function changeBoard(){
+//     const item1 = document.querySelector('#item1');
+//     const item1Text = item1.textContent;
+
+//     function updateBoardTile(){
+//         displayBoard.updateBoard(0,0,item1Text);
+//     }
+//     return {updateBoardTile};
+// }
 
 const move = changeBoard();
 move.updateBoardTile();
