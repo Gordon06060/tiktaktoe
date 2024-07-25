@@ -7,9 +7,12 @@ function displayBoardWeb(itemSelector){
         item.addEventListener('click',function moveFunction(){
             if (isXNext){
                 item.textContent = 'X';
+                changeBoard(item, 'X');
+                //write a function that, with each click, matches the text content X to the cell that it is being clicked
             }
             else{
                 item.textContent='O'
+                changeBoard(item, 'O');
             }
             
             isXNext = !isXNext;
@@ -31,9 +34,9 @@ displayBoardWeb('div[id^="item"]');
 
 function makedisplayBoard(){
         const board = [
-            ['X', 'O', 'O'],
-            ['X', '', 'X'],
-            ['', 'X', 'O'],
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', ''],
         ];
         function updateBoard(row,col,value){
             board[row][col]=value;
@@ -49,18 +52,13 @@ const gameBoard = displayBoard.getBoard();
 
 
 
-// function changeBoard(){
-//     const item1 = document.querySelector('#item00');
-//     const item1Text = item1.textContent;
-
-//     function updateBoardTile(){
-//         displayBoard.updateBoard(0,0,item1Text);
-//     }
-//     return {updateBoardTile};
-// }
-
-// const move = changeBoard();
-// move.updateBoardTile();
+function changeBoard(item, value){
+    const id = item.id;
+    //this gets the id of the item, for example item00
+    const row = parseInt(id.charAt(4));
+    const col = parseInt(id.charAt(5));
+    displayBoard.updateBoard(row, col, value);
+}
 
 
 
